@@ -1,0 +1,133 @@
+{% extends 'prms/dashboards/base.html' %}
+{% load static %}
+<html lang="en">
+
+
+<!-- animsition overrides all click events on clickable things like a,
+      since calendar doesn't add href's be default,
+      it leads to odd behaviors like loading 'undefined'
+      moving the class to menus lead to only the menu having the effect -->
+
+
+<!-- MAIN CONTENT-->
+{% block content%}
+<head>
+    <!-- Title Page-->
+    <title>Calendar</title>
+    <!-- FullCalendar -->
+    <link href="{% static 'prms/dashboard/vendor/fullcalendar-3.10.0/fullcalendar.css' %}" rel='stylesheet' media="all" />
+
+    <style type="text/css">
+    /* force class color to override the bootstrap base rule
+       NOTE: adding 'url: #' to calendar makes this unneeded
+     */
+    .fc-event, .fc-event:hover {
+          color: #fff !important;
+          text-decoration: none;
+    }
+    </style>
+</head>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+            <div data-tockify-component="mini" data-tockify-calendar="spirited"></div>
+
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col">
+          <div class="au-card">
+            <div id="calendar"></div>
+          </div>
+        </div><!-- .col -->
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="copyright">
+                <p>Copyright © 2018 Colorlib. All rights reserved. Template by <a href="https://colorlib.com">Colorlib</a>.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'prms/dashboard/vendor/jquery-3.2.1.min.js' %}"></script>
+<!-- Bootstrap JS-->
+<script src="{% static 'prms/dashboard/vendor/bootstrap-4.1/popper.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/bootstrap-4.1/bootstrap.min.js' %}"></script>
+<!-- Vendor JS       -->
+<script src="{% static 'prms/dashboard/vendor/slick/slick.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/wow/wow.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/animsition/animsition.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js' %}">
+</script>
+<script src="{% static 'prms/dashboard/vendor/counter-up/jquery.waypoints.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/counter-up/jquery.counterup.min.js' %}">
+</script>
+<script src="{% static 'prms/dashboard/vendor/circle-progress/circle-progress.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/perfect-scrollbar/perfect-scrollbar.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/chartjs/Chart.bundle.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/fullcalendar-3.10.0/lib/moment.min.js' %}"></script>
+<script src="{% static 'prms/dashboard/vendor/fullcalendar-3.10.0/fullcalendar.js' %}"></script>
+
+<script type="text/javascript">
+$(function() {
+  // for now, there is something adding a click handler to 'a'
+  var tues = moment().day(2).hour(19);
+
+  // build trival night events for example data
+  var events = [
+    {
+      title: "Special Conference",
+      start: moment().format('YYYY-MM-DD'),
+      url: '#'
+    },
+    {
+      title: "Doctor Appt",
+      start: moment().hour(9).add(2, 'days').toISOString(),
+      url: '#'
+    },
+    {
+      title: "X-Ray Day",
+      start: moment().hour(12).add(1, 'days').toISOString(),
+      url: '#'
+    },
+    {
+      title: "Special Conference 2",
+      start: '2021-01-23T07:00:00',
+      end: '2021-01-23T07:30:00',
+      url: '#',
+      allDay: false,
+    },
+
+  ];
+
+  var trivia_nights = []
+
+  for(var i = 1; i <= 4; i++) {
+    var n = tues.clone().add(i, 'weeks');
+    console.log("isoString: " + n.toISOString());
+    trivia_nights.push({
+      title: 'Trival Night @ Pub XYZ',
+      start: n.toISOString(),
+      allDay: false,
+      url: '#'
+    });
+  }
+
+  // setup a few events
+  $('#calendar').fullCalendar({
+    header: {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'month,agendaWeek,agendaDay,listWeek'
+    },
+    events: events.concat(trivia_nights)
+  });
+});
+</script>
+{% endblock %}
+</html>
+<!-- end document-->

@@ -1,0 +1,54 @@
+{% extends 'prms/dashboards/base.html' %}
+{% load static %}
+<html lang="en">
+
+<!-- MAIN CONTENT-->
+{%block content%}
+<head>
+    <title>Employee list</title>
+</head>
+<div class="user-data m-b-40">
+            <h3 class="title-3 m-b-30">
+                <i class="zmdi zmdi-account-calendar"></i>Employee List</h3>
+            <div class="table-responsive table-data">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>name</td>
+                            <td>role</td>
+                            <td>phone</td>
+                            <td>edit</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for emp in employees %}
+                    <tr>
+                            <td>
+                                <div class="table-data__info">
+                                    <h6>{{emp.firstname}} {{emp.surname}}</h6>
+                                    <span>
+                                        <a href="#">{{emp.email}}</a>
+                                    </span>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="#role {{emp.group}}">{{emp.group}}</span>
+                            </td>
+                            <td>
+                                <div class="table-data__info">
+                                    <h6>{{emp.phone}}</h6>
+                                </div>
+                            </td>
+                            <td>
+                                <a href=""><i class="far fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+{% endblock%}
+
+</html>
+<!-- end document-->

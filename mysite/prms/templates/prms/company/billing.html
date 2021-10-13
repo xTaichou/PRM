@@ -1,0 +1,31 @@
+{% extends 'prms/base.html' %}
+{% load static %}
+ <title>Billing</title>
+
+{% block content %}
+    <section class="u-clearfix u-section-1" id="sec-54d2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-image u-layout-cell u-left-cell u-size-40 u-image-1" src="" data-image-width="1080" data-image-height="1080">
+                <div class="u-container-layout u-valign-middle u-container-layout-1"></div>
+              </div>
+              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-white u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <h2 class="u-text u-text-1">Step 2</h2>
+                  <h3 class="u-text u-text-1">Billing information</h3>
+                  <p>Please note that invoices default to the 20th of each month </p>
+                  <form method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Save"/>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'prms/base.html' %}
+{% load static %}
+
+{% block content %}
+<head>
+    <title>Employee creation</title>
+</head>
+   <section class="u-clearfix u-section-1" id="sec-54d2">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="u-clearfix u-expanded-width u-gutter-10 u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-image u-layout-cell u-left-cell u-size-40 u-image-1" src="" data-image-width="1080" data-image-height="1080">
+                <div class="u-container-layout u-valign-middle u-container-layout-1"></div>
+              </div>
+              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-20 u-white u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                    {% if user.is_authenticated %}
+                      <h2 class="u-text u-text-1">Employee creation</h2>
+                    {% else %}
+                      <h2 class="u-text u-text-1">Step 3</h2>
+                  <h3 class="u-text u-text-1">Super user creation</h3>
+                  <p>Last step. Please enter the details below to create the super user. They will have full access to the system.</p>
+                    {% endif %}
+                  <form method="post">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" value="Save"/>
+                </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   </section>
+{% endblock %}

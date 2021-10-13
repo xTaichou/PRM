@@ -1,0 +1,57 @@
+{% extends 'prms/dashboards/base.html' %}
+{% load static %}
+<html lang="en">
+
+
+
+{%block content%}
+<head>
+    <!-- Title Page-->
+    <title>Patient list</title>
+</head>
+
+<!-- MAIN CONTENT-->
+<div class="user-data m-b-40">
+            <h3 class="title-3 m-b-30">
+                <i class="zmdi zmdi-account-calendar"></i>Patient List</h3>
+            <div class="table-responsive table-data">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td>name</td>
+                            <td>email</td>
+                            <td>phone</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for pa in patients %}
+                    <tr>
+                        <td>
+                            <div class="table-data__info">
+                                <a href="p_view/{{ pa.pk }}">{{pa.firstname}} {{pa.surname}}</a>
+                            </div>
+                        </td>
+                        <td>{{pa.email}}</td>
+                        <td>{{pa.phone}}</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                    <a href="/edit_visit/{{ v.pk }}" ><i class="zmdi zmdi-edit"></i></a>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+{% endblock%}
+
+</html>
+<!-- end document-->

@@ -1,0 +1,58 @@
+{% extends 'prms/dashboards/base.html' %}
+{% load static %}
+<html lang="en">
+
+<!-- MAIN CONTENT-->
+{% block content%}
+<head>
+    <title>New visit</title>
+</head>
+<div class="containter-fluid">
+    <div class="col-md-6 offset-md-3">
+        <div class="card">
+            <form method="post">
+                {% csrf_token %}
+                <div class="card-header">
+                <strong>New appointment</strong>
+            </div>
+            <div class="card-body card-block">
+                {{form.doctor}}
+                {{form.patient}}
+             <div class="form-group">
+                <label  class=" form-control-label">Date</label>
+                 <br>
+                 {{form.date}}
+             </div>
+            <div class="form-group">
+                <label  class=" form-control-label">Reason for visit</label>
+                <textarea name="reason" id="id_reason" rows="9" placeholder="Reason for visit..." class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label class=" form-control-label">Prognosis</label>
+                <textarea name="prognosis" id="id_prognosis" rows="9" placeholder="Content..." class="form-control" required></textarea>
+            </div>
+            <div class="form-group">
+                <label class=" form-control-label">Prescription</label>
+                {{form.perscription}}
+            </div>
+            <div class="form-group">
+                <label class=" form-control-label">Notes</label>
+                <textarea name="notes" id="id_notes" rows="9" placeholder="Additional notes if required..." class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label class=" form-control-label">Files</label><br>
+                {{form.files}}
+            </div>
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Submit
+                </button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+</html>
+<!-- end document-->

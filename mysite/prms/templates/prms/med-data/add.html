@@ -1,0 +1,23 @@
+{% extends 'prms/dashboards/base.html' %}
+{% load static %}
+<html lang="en">
+
+
+
+{%block content%}
+<head>
+    <!-- Title Page-->
+    <title>Add medical data</title>
+</head>
+<!-- MAIN CONTENT-->
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    {{form.patient}}
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock%}
+
+</html>
+<!-- end document-->
